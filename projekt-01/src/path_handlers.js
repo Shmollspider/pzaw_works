@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 
 const index_html = readFileSync("./pepper/index.html");
-
+const favicon_ico = readFileSync("./pepper/favicon.ico");
 const pathConfigs = [
   {
     path: "/",
@@ -9,6 +9,14 @@ const pathConfigs = [
     handler: (req, res) => {
       res.writeHead(200, { "Content-Type": "text/html" });
       res.end(index_html);
+    },
+  },
+  {
+    path: "/favicon.ico",
+    allowed_methods: ["GET"],
+    handler: (req, res) => {
+      res.writeHead(200, { "Content-Type": "image/vnd.microsoft.icon." });
+      res.end(favicon_ico);
     },
   },
   {
